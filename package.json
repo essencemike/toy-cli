@@ -1,0 +1,51 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/@toy/*",
+    "packages/test/*",
+    "packages/toy-cli-version-marker"
+  ],
+  "scripts": {
+    "test": "node scripts/test.js",
+    "pretest": "yarn clean",
+    "lint": "eslint --fix packages/**/*.js packages/**/bin/*",
+    "check-links": "node scripts/checkLinks.js",
+    "clean": "rimraf packages/test/* packages/**/temp/*",
+    "sync": "node scripts/syncDeps.js",
+    "boot": "node scripts/bootstrap.js",
+    "commit": "git-cz",
+    "release": "standard-version"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "packages/**/bin/*": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "husky": "^3.0.5",
+    "lerna": "^3.16.4",
+    "lint-staged": "^9.2.5",
+    "standard-version": "^7.0.0"
+  },
+  "name": "toy-cli"
+}
