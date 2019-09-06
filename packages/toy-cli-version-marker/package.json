@@ -1,0 +1,11 @@
+{
+  "name": "toy-cli-version-marker",
+  "version": "0.0.0",
+  "description": "version marker for @toy/cli",
+  "author": "IMike",
+  "license": "MIT",
+  "main": "package.json",
+  "devDependencies": {
+    "@toy/cli": "^0.0.0"
+  }
+}
